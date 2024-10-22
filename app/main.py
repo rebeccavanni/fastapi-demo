@@ -10,8 +10,12 @@ app = FastAPI()
 
 @app.get("/")  # zone apex
 def zone_apex():
-    return {"Hello": "Hello API"}
+    return {"Bye": "Bye API"}
 
 @app.get("/add/{a}/{b}")
 def add(a: int, b: int):
     return {"sum": a + b}
+
+@app.get("/square/{a}")
+def square(a: int):
+    return {"sum": a * a}

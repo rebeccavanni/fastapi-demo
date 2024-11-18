@@ -20,7 +20,6 @@ db = mysql.connector.connect(user=DBUSER, host=DBHOST, password=DBPASS, database
 cur=db.cursor()
 
 app = FastAPI()
-app = FastAPI()
 from fastapi.middleware.cors import CORSMiddleware
 app.add_middleware(
     CORSMiddleware,
@@ -45,15 +44,20 @@ def get_genres():
 
 @app.get('/songs')
 def get_songs():
-    query = "SELECT * FROM songs ORDER BY songid;"
     try:
+        db = mysql.connector.connect(user=DBUSER, host=DBHOST, password=DBPASS, database=DB)
+        cur = db.cursor()
+        query = "SELECT * FROM songs ORDER BY songid;"
         cur.execute(query)
         headers = [x[0] for x in cur.description]
         results = cur.fetchall()
         json_data = [dict(zip(headers, result)) for result in results]
+        cur.close()  # Close the cursor
+        db.close()   # Close the database connection
         return json_data
     except Error as e:
         return {"Error": f"MySQL Error: {str(e)}"}
+
 
 @app.get('/songs/details')
 def get_song_details():

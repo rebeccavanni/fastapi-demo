@@ -42,7 +42,7 @@ def get_genres():
 
 @app.get('/songs')
 def get_songs():
-    query = "SELECT s.title, s.artist, g.genre FROM songs s LEFT JOIN genres g ON s.genre = g.genreid"
+    query = "SELECT s.title, s.album, s.artist, s.year, s.file, g.genre FROM songs s LEFT JOIN genres g ON s.genre = g.genreid"
     try:    
         cur.execute(query)
         headers=[x[0] for x in cur.description]

@@ -11,8 +11,8 @@ from mysql.connector import Error
 
 from dotenv import load_dotenv
 load_dotenv()
-DBHOST = os.getenv("Database_Host")
-DBUSER = os.getenv("Database_User")
+DBHOST = 'ds2022.cqee4iwdcaph.us-east-1.rds.amazonaws.com'
+DBUSER = 'admin'
 DBPASS = os.getenv("Database_Pass")
 DB = "ecn2wh"
 

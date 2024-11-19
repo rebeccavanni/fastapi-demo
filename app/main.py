@@ -9,11 +9,9 @@ import os
 import mysql.connector
 from mysql.connector import Error
 
-from dotenv import load_dotenv
-load_dotenv()
 DBHOST = 'ds2022.cqee4iwdcaph.us-east-1.rds.amazonaws.com'
 DBUSER = 'admin'
-DBPASS = os.getenv("Database_Pass")
+DBPASS = os.getenv("DBPASS")
 DB = "ecn2wh"
 
 db = mysql.connector.connect(user=DBUSER, host=DBHOST, password=DBPASS, database=DB)

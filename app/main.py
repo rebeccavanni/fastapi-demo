@@ -46,6 +46,8 @@ def get_genres():
 def get_songs():
     query = "SELECT s.title, s.artist, g.genre FROM songs s LEFT JOIN genres g ON s.genre = g.genreid"
     try:    
+        connection = get_db_connection()
+        cur = connection.cursor()
         cur.execute(query)
         headers=[x[0] for x in cur.description]
         results = cur.fetchall()
